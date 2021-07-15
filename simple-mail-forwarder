@@ -2,7 +2,7 @@
 
 export SMF_CONFIG=$(for f in /etc/simple-mail-forwarder/mail.d/*.txt; do cat "${f}"; echo; done)
 
-YAML=$(cat <<EOF
+YAML=$(cat <<'EOF'
 version: '3.6'
 services:
   mail:
