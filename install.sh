@@ -30,6 +30,7 @@ echo "@example.com:exampleaccount@gmail.com" > /etc/simple-mail-forwarder/mail.d
 # simple-mail-forwarder service
 sudo wget -O /etc/systemd/system/simple-mail-forwarder.service $BASE_URL/simple-mail-forwarder.service
 sudo systemctl daemon-reload
+sudo systemctl stop simple-mail-forwarder
 sudo systemctl start simple-mail-forwarder
 sudo systemctl enable simple-mail-forwarder
 
