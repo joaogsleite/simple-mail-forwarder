@@ -3,9 +3,10 @@
 export SMF_CONFIG=$(for f in /etc/simple-mail-forwarder/mail.d/*.txt; do cat "${f}"; echo; done)
 
 YAML=$(cat <<'EOF'
-version: '3.6'
+version: "3.6"
 services:
   mail:
+    container_name: simple-mail-forwarder
     image: zixia/simple-mail-forwarder
     restart: unless-stopped
     environment:
