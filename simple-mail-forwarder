@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 
-SMF_CONFIG=$(for f in /etc/simple-mail-forwarder/mail.d/*.txt; do cat "${f}"; echo; done)
+export SMF_CONFIG=$(for f in /etc/simple-mail-forwarder/mail.d/*.txt; do cat "${f}"; echo; done)
 
-YAML=$(cat <<-EOF
+YAML=$(cat <<EOF
 version: '3.6'
 services:
   mail:
     image: zixia/simple-mail-forwarder
     restart: unless-stopped
     environment:
-      SMF_CONFIG: "$SMF_CONFIG"
+      SMF_CONFIG: ${SMF_CONFIG}
     ports:
       - "25:25"
 EOF
 )
 
-echo $YAML | docker-compose -f - down
-echo $YAML | docker-compose -f - up -d
+echo "$YAML" | docker-compose -f - down
+echo "$YAML" | docker-compose -f - up -d
