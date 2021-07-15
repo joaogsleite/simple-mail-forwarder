@@ -1,0 +1,13 @@
+[Unit]
+Description=Simple Mail Forwarder
+After=network.target
+StartLimitIntervalSec=30
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/usr/bin/simple-mail-forwarder
+
+[Install]
+WantedBy=multi-user.target
