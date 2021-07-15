@@ -16,4 +16,4 @@ EOF
 )
 
 echo "$YAML" | docker-compose -f - down
-echo "$YAML" | docker-compose -f - up -d
+echo "$YAML" | docker-compose -f - up
