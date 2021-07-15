@@ -13,10 +13,10 @@ sudo apt install -y wget
 
 # docker-compose
 sudo apt install -y jq
-VERSION=\$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | jq .name -r)
-OS=\$(uname -s)
-ARCH=\$(uname -m)
-sudo curl -L "https://github.com/docker/compose/releases/download/\$VERSION/docker-compose-\$OS-\$ARCH" -o /usr/local/bin/docker-compose
+VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | jq .name -r)
+OS=$(uname -s)
+ARCH=$(uname -m)
+sudo curl -L "https://github.com/docker/compose/releases/download/$VERSION/docker-compose-$OS-$ARCH" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 # simple-mail-forwarder script
