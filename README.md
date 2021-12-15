@@ -29,3 +29,7 @@ myname@example.com:myaccount@gmail.com:EXAMPLEPASSWORD
 ```
 sudo systemctl restart simple-mail-forwarder
 ```
+
+4. DKIM keys will be added to `/etc/simple-mail-forwarder/dkim/`.
+
+> Copy value inside `default.txt` to a DNS TXT record named `default._domainkey`

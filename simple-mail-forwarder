@@ -9,6 +9,8 @@ services:
     container_name: simple-mail-forwarder
     image: zixia/simple-mail-forwarder
     restart: unless-stopped
+    volumes:
+      - /etc/simple-mail-forwarder/dkim:/var/db/dkim
     environment:
       SMF_CONFIG: ${SMF_CONFIG}
     ports:
