@@ -25,7 +25,12 @@ sudo chmod +x /usr/bin/simple-mail-forwarder
 
 # simple-mail-forwader configs
 sudo mkdir -p /etc/simple-mail-forwarder/mail.d/
-echo "@example.com:exampleaccount@gmail.com" > /etc/simple-mail-forwarder/mail.d/example.txt
+if [ -z "$(ls -A /etc/simple-mail-forwarder/mail.d/)" ]; then 
+  echo "@example.com:exampleaccount@gmail.com" > /etc/simple-mail-forwarder/mail.d/example.txt
+fi
+if [ ! -f /etc/simple-mail-forwarder/domain.txt ] then
+  echo "example.com" > /etc/simple-mail-forwarder/domain.txt
+fi
 
 # simple-mail-forwarder service
 sudo wget -O /etc/systemd/system/simple-mail-forwarder.service $BASE_URL/simple-mail-forwarder.service

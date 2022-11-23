@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 export SMF_CONFIG=$(for f in /etc/simple-mail-forwarder/mail.d/*.txt; do cat "${f}"; echo; done)
+export SMF_DOMAIN=$(cat /etc/simple-mail-forwarder/domain.txt 2>/dev/null)
 
 YAML=$(cat <<'EOF'
 version: "3.6"
@@ -13,6 +14,12 @@ services:
       - /etc/simple-mail-forwarder/dkim:/var/db/dkim
     environment:
       SMF_CONFIG: ${SMF_CONFIG}
+      SMF_SRS: true
+      SMF_DOMAIN: ${SMF_DOMAIN}
+      SMF_POSTFIXMAIN_sender_canonical_maps=tcp:localhost:10001
+      SMF_POSTFIXMAIN_sender_canonical_classes=envelope_sender
+      SMF_POSTFIXMAIN_recipient_canonical_maps=tcp:localhost:10002
+      SMF_POSTFIXMAIN_recipient_canonical_classes=envelope_recipient,header_recipient
     ports:
       - "25:25"
 EOF
