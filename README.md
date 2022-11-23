@@ -24,12 +24,16 @@ myname@example.com:myaccount@gmail.com:EXAMPLEPASSWORD
 @example.com:myaccount@gmail.com
 ```
 
-3. Save the file and reload the *simple-mail-forwarder* service
+3. Edit `domain.txt` file inside `/etc/simple-mail-forwarder/` with the main domain
+
+> Example: `mymaindomain.com`
+
+4. Save the file and reload the *simple-mail-forwarder* service
 
 ```
 sudo systemctl restart simple-mail-forwarder
 ```
 
-4. DKIM keys will be added to `/etc/simple-mail-forwarder/dkim/`.
+5. DKIM keys will be added to `/etc/simple-mail-forwarder/dkim/`.
 
 > Copy value inside `default.txt` to a DNS TXT record named `default._domainkey`

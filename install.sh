@@ -28,7 +28,7 @@ sudo mkdir -p /etc/simple-mail-forwarder/mail.d/
 if [ -z "$(ls -A /etc/simple-mail-forwarder/mail.d/)" ]; then 
   echo "@example.com:exampleaccount@gmail.com" > /etc/simple-mail-forwarder/mail.d/example.txt
 fi
-if [ ! -f /etc/simple-mail-forwarder/domain.txt ] then
+if [ ! -f /etc/simple-mail-forwarder/domain.txt ]; then
   echo "example.com" > /etc/simple-mail-forwarder/domain.txt
 fi
 
