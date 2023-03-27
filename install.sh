@@ -2,25 +2,15 @@
 
 BASE_URL="https://raw.githubusercontent.com/joaogsleite/simple-mail-forwarder/master/"
 
-sudo apt update -y
-
 # docker
-sudo apt install -y docker.io
-sudo systemctl enable docker
-
-# wget
-sudo apt install -y wget
-
-# docker-compose
-sudo apt install -y jq
-VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | jq .name -r)
-OS=$(uname -s)
-ARCH=$(uname -m)
-sudo curl -L "https://github.com/docker/compose/releases/download/$VERSION/docker-compose-$OS-$ARCH" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
+if ! command -v docker &> /dev/null ; then
+  curl -fsSL https://get.docker.com -o get-docker.sh
+  sudo sh get-docker.sh
+  rm get-docker.sh
+fi
 
 # simple-mail-forwarder script
-sudo wget -O /usr/bin/simple-mail-forwarder $BASE_URL/simple-mail-forwarder
+sudo curl -o /usr/bin/simple-mail-forwarder $BASE_URL/simple-mail-forwarder
 sudo chmod +x /usr/bin/simple-mail-forwarder
 
 # simple-mail-forwader configs
@@ -33,7 +23,7 @@ if [ ! -f /etc/simple-mail-forwarder/domain.txt ]; then
 fi
 
 # simple-mail-forwarder service
-sudo wget -O /etc/systemd/system/simple-mail-forwarder.service $BASE_URL/simple-mail-forwarder.service
+sudo curl -o /etc/systemd/system/simple-mail-forwarder.service $BASE_URL/simple-mail-forwarder.service
 sudo systemctl daemon-reload
 sudo systemctl stop simple-mail-forwarder
 sudo systemctl start simple-mail-forwarder
