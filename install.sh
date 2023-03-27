@@ -10,7 +10,7 @@ if ! command -v docker &> /dev/null ; then
 fi
 
 # simple-mail-forwarder script
-sudo curl -o /usr/bin/simple-mail-forwarder $BASE_URL/simple-mail-forwarder
+sudo curl -L -o /usr/bin/simple-mail-forwarder $BASE_URL/simple-mail-forwarder
 sudo chmod +x /usr/bin/simple-mail-forwarder
 
 # simple-mail-forwader configs
@@ -23,7 +23,7 @@ if [ ! -f /etc/simple-mail-forwarder/domain.txt ]; then
 fi
 
 # simple-mail-forwarder service
-sudo curl -o /etc/systemd/system/simple-mail-forwarder.service $BASE_URL/simple-mail-forwarder.service
+sudo curl -L -o /etc/systemd/system/simple-mail-forwarder.service $BASE_URL/simple-mail-forwarder.service
 sudo systemctl daemon-reload
 sudo systemctl stop simple-mail-forwarder
 sudo systemctl start simple-mail-forwarder
